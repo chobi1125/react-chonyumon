@@ -1,32 +1,50 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import './App.css';
-import Memo from './memo/Memo';
-import AddForm from './memo/AddForm';
-import FindForm from './memo/FindForm';
-import DelForm from './memo/DelForm';
-
-class App extends Component {
-  td = {
-    width:"250px"
-  }
-  constructor(props){
-    super(props);
-  }
-  render() {
-    return (
-      <div>
-        <h1>Memo</h1>
-        <AddForm />
-        <hr />
-        <table><tbody><tr>
-          <td style={this.td}><FindForm /></td>
-          <td style={this.td}><DelForm /></td>
-          </tr></tbody></table>
-          <Memo />
-      </div>
-    );
-  }
+// ステートのマッピング
+function mappingState(state) {
+  return state;
 }
-
-export default connect()(App);
+// Appコンポーネント
+function App() {
+  const style = {
+    color: "blue"
+  }
+  return (
+    <div>
+      <h1 style={{color: "blue"}}>Redux</h1>
+      <h1 style={style}>Redux</h1>
+      <Message />
+      <Button />
+    </div>
+  );
+}
+// メッセージ表示のコンポーネント
+function Message(props) {
+  return (
+    <p>
+      {props.message}: {props.counter}
+    </p>
+  );
+}
+// ストアのコネクト
+Message = connect(mappingState)(Message);
+// ボタンのコンポーネント
+function Button(props) {
+  // ボタンクリックでディスパッチを実行
+  function doAction(e){
+    if (e.shiftKey){
+      props.dispatch({ type:'DECREMENT' });
+    } else {
+      props.dispatch({ type:'INCREMENT' });
+    }
+}
+  return (
+    <button onClick={doAction}>
+      click
+    </button>
+  );
+}
+// ストアのコネクト
+Button = connect()(Button);
+export default App;
