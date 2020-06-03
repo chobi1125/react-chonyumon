@@ -1,12 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './App.css';
-// ステートのマッピング
-function mappingState(state) {
-  return state;
-}
+
+const mappingState = state =>  state ;
 // Appコンポーネント
-function App() {
+const App = () => {
   const style = {
     color: "blue"
   }
@@ -20,19 +18,12 @@ function App() {
   );
 }
 // メッセージ表示のコンポーネント
-function Message(props) {
-  return (
-    <p>
-      {props.message}: {props.counter}
-    </p>
-  );
-}
+let Message = props => <p>{props.message}: {props.counter}</p>;
 // ストアのコネクト
 Message = connect(mappingState)(Message);
 // ボタンのコンポーネント
-function Button(props) {
-  // ボタンクリックでディスパッチを実行
-  function doAction(e){
+let Button = props => {
+  let doAction = e => {
     if (e.shiftKey){
       props.dispatch({ type:'DECREMENT' });
     } else {
