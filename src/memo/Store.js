@@ -72,8 +72,6 @@ function deleteReduce(state, action){
 }
 
 // アクションクリエーター
-
-// 
 export function addMemo(text) {
   return {
     type: 'ADD',
