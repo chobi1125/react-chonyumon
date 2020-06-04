@@ -1,7 +1,8 @@
 ## 個人メモ
+masterブランチ
 
-todoブランチでカウンター
+todoブランチでtodo
 
-counterブランチでtodo
+counterブランチでcounter
 
-全く逆の名前でブランチをコミットしてしまった・・・
+todo-functionブランチでtodoの関数型

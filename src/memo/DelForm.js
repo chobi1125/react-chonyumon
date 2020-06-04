@@ -4,17 +4,6 @@ import { deleteMemo } from './Store';
 
 
 class DelForm extends Component {
-  input = {
-    fontSize:"12pt",
-    color:"#006",
-    padding:"1px",
-    margin:"5px 0px"
-  }
-  btn = {
-    fontSize:"10pt",
-    color:"#006",
-    padding:"2px 10px"
-  }
 
   constructor(props){
     super(props);
@@ -52,10 +41,10 @@ class DelForm extends Component {
       <div>
         <form onSubmit={this.doAction}>
         <select onChange={this.doChange}
-          defaultValue="-1" style={this.input}>
+          defaultValue="-1">
           {items}
         </select>
-        <input type="submit" style={this.btn} value="Del"/>
+        <input type="submit" value="Del"/>
         </form>
       </div>
     );
