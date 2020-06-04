@@ -1,44 +1,29 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addMemo } from './Store';
 
-class AddForm extends Component {
+let AddForm = props => {
 
-  constructor(props){
-    super(props);
-    this.state = {
-      message:''
-    }
-    this.doChange = this.doChange.bind(this);
-    this.doAction = this.doAction.bind(this);
-  }
+  const [message, setMessage] = useState('');
 
-  doChange(e){
-    this.setState({
-      message: e.target.value
-    });
-  }
+  let doChange = e => setMessage(e.target.value);
 
-  doAction(e){
+  let doAction = e => {
     e.preventDefault();
-    let action = addMemo(this.state.message);
-    this.props.dispatch(action);
-    this.setState({
-      message: ''
-    });
+    let action = addMemo(message);
+    props.dispatch(action);
+    setMessage('');
   }
 
-  render(){
-    return (
-      <div>
-        <p>{this.props.message}</p>
-        <form onSubmit={this.doAction}>
-        <input type="text" size="40" onChange={this.doChange}
-          value={this.state.message} required />
-        <input type="submit" value="Add"/>
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <p>{props.message}</p>
+      <form onSubmit={doAction}>
+      <input type="text" size="40" onChange={doChange}
+        value={message} required />
+      <input type="submit" value="Add"/>
+      </form>
+    </div>
+  );
 }
 export default connect((state)=>state)(AddForm);

@@ -1,42 +1,25 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { findMemo } from './Store';
 
+let FindForm = props => {
+  
+  const  [find, setFind] = useState('');
 
-class FindForm extends Component {
+  let doChange = e => setFind(e.target.value);
 
-  constructor(props){
-    super(props);
-    this.state = {
-      find:''
-    }
-    this.doChange = this.doChange.bind(this);
-    this.doAction = this.doAction.bind(this);
-  }
-
-
-  doChange(e){
-    this.setState({
-      find: e.target.value
-    });
-  }
-
-
-  doAction(e){
+  let doAction = e => {
     e.preventDefault();
-    let action = findMemo(this.state.find);
-    this.props.dispatch(action);
+    let action = findMemo(find);
+    props.dispatch(action);
   }
 
-
-  render(){
-    return (
-      <form onSubmit={this.doAction}>
-        <input type="text" size="10" onChange={this.doChange}
-          value={this.state.message} />
-        <input type="submit" value="Find"/>
-      </form>
-    );
-  }
+  return (
+    <form onSubmit={doAction}>
+      <input type="text" size="10" onChange={doChange}
+        value={find} />
+      <input type="submit" value="Find"/>
+    </form>
+  );
 }
 export default connect((state)=>state)(FindForm);

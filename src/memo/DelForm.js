@@ -1,53 +1,35 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { deleteMemo } from './Store';
 
 
-class DelForm extends Component {
+let DelForm = props => {
+  
+  const [del, setDelete] = useState(0);
 
-  constructor(props){
-    super(props);
-    this.state = {
-      number:0
-    }
-    this.doChange = this.doChange.bind(this);
-    this.doAction = this.doAction.bind(this);
-  }
+  let doChange = e => setDelete(e.target.value);
 
-
-  doChange(e){
-    this.setState({
-      number: e.target.value
-    });
-  }
-
-
-  doAction(e){
+  let doAction = e => {
     e.preventDefault();
-    let action = deleteMemo(this.state.number);
-    this.props.dispatch(action);
-    this.setState({
-      number: 0
-    });
+    let action = deleteMemo(del);
+    props.dispatch(action);
+    setDelete(del);
   }
-
-
-  render(){
-    let n = 0;
-    let items = this.props.data.map((value)=>(
-      <option key={n} value={n++}>{value.message.substring(0,10)}</option>
-    ));
-    return (
-      <div>
-        <form onSubmit={this.doAction}>
-        <select onChange={this.doChange}
-          defaultValue="-1">
-          {items}
-        </select>
-        <input type="submit" value="Del"/>
-        </form>
-      </div>
-    );
-  }
+  let n = 0;
+  let items = props.data.map((value)=>(
+    <option key={n} value={n++}>{value.message.substring(0,10)}</option>
+  ));
+  return (
+    <div>
+      <form onSubmit={doAction}>
+      <select onChange={doChange}
+        defaultValue="-1">
+        {items}
+      </select>
+      <input type="submit" value="Del"/>
+      </form>
+    </div>
+  );
 }
+
 export default connect((state)=>state)(DelForm);

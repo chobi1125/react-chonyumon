@@ -1,5 +1,4 @@
 import { createStore } from 'redux';
-
 // ステート
 const initData = {
   data:[{message:'sample data', created:new Date()}],
@@ -7,7 +6,6 @@ const initData = {
   mode:'default',
   fdata:[]//検索したメモをまとめておく
 };
-
 // レデューサー
 export function memoReducer(state = initData, action) {
   switch (action.type) {
@@ -24,9 +22,7 @@ export function memoReducer(state = initData, action) {
       return state;
   }
 }
-
 // レデュースアクション
-
 // メモ追加のレデュース処理
 function addReduce(state, action){
   let data = {
@@ -42,7 +38,6 @@ function addReduce(state, action){
     fdata:[]
   };
 }
-
 // メモ検索のレデュース処理
 function findReduce(state, action){
   let f = action.find;
@@ -59,7 +54,6 @@ function findReduce(state, action){
     fdata:fdata
   };
 }
-
 // メモ削除のレデュース処理
 function deleteReduce(state, action){
   let newdata = state.data.slice();
@@ -71,7 +65,6 @@ function deleteReduce(state, action){
     fdata:[]
   }
 }
-
 // アクションクリエーター
 export function addMemo(text) {
   return {
@@ -79,8 +72,6 @@ export function addMemo(text) {
     message:text
   }
 }
-
-
 // メモ検索のアクション
 export function findMemo(text) {
   return {
@@ -88,7 +79,6 @@ export function findMemo(text) {
     find:text
   }
 }
-
 // メモ削除のアクション
 export function deleteMemo(num) {
   return {
