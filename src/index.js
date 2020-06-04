@@ -5,8 +5,9 @@ import './index.css';
 import App from './App';
 import MemoStore from './memo/Store'
 
+// 表示をレンダリング
 ReactDOM.render(
-  <Provider store ={MemoStore}>
+  <Provider store={MemoStore}>
     <App />
   </Provider>,
   document.getElementById('root')

@@ -6,6 +6,7 @@ import AddForm from './memo/AddForm';
 import FindForm from './memo/FindForm';
 import DelForm from './memo/DelForm';
 
+// Appコンポーネント
 class App extends Component {
   td = {
     width:"250px"
@@ -13,6 +14,7 @@ class App extends Component {
   constructor(props){
     super(props);
   }
+
   render() {
     return (
       <div>
@@ -22,8 +24,8 @@ class App extends Component {
         <table><tbody><tr>
           <td style={this.td}><FindForm /></td>
           <td style={this.td}><DelForm /></td>
-          </tr></tbody></table>
-          <Memo />
+        </tr></tbody></table>
+        <Memo />
       </div>
     );
   }

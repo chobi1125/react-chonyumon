@@ -1,5 +1,6 @@
 import { createStore } from 'redux';
 
+// ステート
 const initData = {
   data:[{message:'sample data', created:new Date()}],
   message:'please type message:',
@@ -72,12 +73,19 @@ function deleteReduce(state, action){
 }
 
 // アクションクリエーター
-
-// 
 export function addMemo(text) {
   return {
     type: 'ADD',
     message:text
+  }
+}
+
+
+// メモ検索のアクション
+export function findMemo(text) {
+  return {
+    type: 'FIND',
+    find:text
   }
 }
 
@@ -88,14 +96,5 @@ export function deleteMemo(num) {
     index:num
   }
 }
-
-// メモ検索のアクション
-export function findMemo(text) {
-  return {
-    type: 'FIND',
-    find:text
-  }
-}
-
 // ストアを作成
 export default createStore(memoReducer);
